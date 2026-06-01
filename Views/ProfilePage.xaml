@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RBSLangApp.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Профиль">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="18" Spacing="14">
+            <Label Text="Профиль"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Frame>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Пользователь"
+                           FontSize="14"
+                           TextColor="#6F7280" />
+                    <Label x:Name="UserNameLabel"
+                           FontSize="22"
+                           FontAttributes="Bold" />
+                    <Label x:Name="UserLoginLabel"
+                           FontSize="16"
+                           TextColor="#6F7280" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Frame Grid.Column="0">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Избранные слова"
+                               TextColor="#6F7280" />
+                        <Label x:Name="FavoritesCountLabel"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="#8E1F1F" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Column="1">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Средний результат"
+                               TextColor="#6F7280" />
+                        <Label x:Name="AverageResultLabel"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="#8E1F1F" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+            <Button Text="Избранные слова"
+                    Clicked="OpenFavorites_Clicked" />
+
+            <Button Text="История тестов"
+                    Clicked="OpenProgress_Clicked"
+                    BackgroundColor="#D74D4D" />
+
+            <Button Text="Выйти из аккаунта"
+                    Clicked="Logout_Clicked"
+                    BackgroundColor="#5B5E68" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

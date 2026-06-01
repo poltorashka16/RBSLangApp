@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#141217"/>
+  <rect x="22" y="22" width="84" height="84" rx="22" fill="#F3F4F6"/>
+  <text x="64" y="77" text-anchor="middle" font-size="42" font-family="Arial" font-weight="700" fill="#8E1F1F">RBS</text>
+</svg>

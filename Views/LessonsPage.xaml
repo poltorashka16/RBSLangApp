@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RBSLangApp.Views.LessonsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:RBSLangApp.Models"
+    Title="Уроки">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <Label Text="Учись шаг за шагом"
+                   Style="{StaticResource TitleLabelStyle}" />
+
+            <Label Text="Выбирай урок и проходи его как в языковом тренажёре"
+                   Style="{StaticResource SubtitleLabelStyle}" />
+
+            <CollectionView x:Name="LessonsCollection"
+                            SelectionMode="None">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Lesson">
+                        <Frame Style="{StaticResource LessonCardStyle}">
+                            <VerticalStackLayout Spacing="12">
+
+                                <Grid ColumnDefinitions="70,*">
+                                    <Frame WidthRequest="60"
+                                           HeightRequest="60"
+                                           CornerRadius="30"
+                                           BackgroundColor="#EAF9E2"
+                                           Padding="0"
+                                           HasShadow="False"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center">
+                                        <Label Text="📘"
+                                               FontSize="28"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" />
+                                    </Frame>
+
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                        <Label Text="{Binding Title}"
+                                               FontSize="20"
+                                               FontAttributes="Bold" />
+
+                                        <Label Text="{Binding Subtitle}"
+                                               Style="{StaticResource SubtitleLabelStyle}" />
+
+                                        <Frame BackgroundColor="#E8F4FF"
+                                               CornerRadius="12"
+                                               Padding="10,4"
+                                               HasShadow="False"
+                                               HorizontalOptions="Start">
+                                            <Label Text="{Binding Level}"
+                                                   TextColor="#1CB0F6"
+                                                   FontSize="13"
+                                                   FontAttributes="Bold" />
+                                        </Frame>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                    <ProgressBar Progress="0.65"
+                                                 HeightRequest="10"
+                                                 BackgroundColor="#E5E5E5"
+                                                 ProgressColor="#58CC02"
+                                                 VerticalOptions="Center" />
+
+                                    <Label Grid.Column="1"
+                                           Text="65%"
+                                           TextColor="#58CC02"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="Center" />
+                                </Grid>
+
+                                <Button Text="НАЧАТЬ УРОК"
+                                        Style="{StaticResource MainButtonStyle}"
+                                        Clicked="OpenLesson_Clicked"
+                                        CommandParameter="{Binding Id}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

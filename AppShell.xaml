@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="RBSLangApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:RBSLangApp.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="#141217"
+    Shell.TabBarTitleColor="#FFFFFF"
+    Shell.TabBarUnselectedColor="#BFC2CC">
+    <TabBar>
+        <ShellContent Title="Уроки" ContentTemplate="{DataTemplate views:LessonsPage}" />
+        <ShellContent Title="Словарь" ContentTemplate="{DataTemplate views:DictionaryPage}" />
+        <ShellContent Title="Профиль" ContentTemplate="{DataTemplate views:ProfilePage}" />
+    </TabBar>
+</Shell>

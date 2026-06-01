@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RBSLangApp.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid Padding="22">
+        <VerticalStackLayout VerticalOptions="Center" Spacing="18">
+            <Label Text="RBSLangApp"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Label Text="Вход в приложение"
+                   FontSize="18"
+                   TextColor="#D7DAE2" />
+
+            <Frame Margin="0,12,0,0">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Логин"
+                           FontAttributes="Bold" />
+                    <Entry x:Name="LoginEntry"
+                           Placeholder="Введите логин"
+                           ClearButtonVisibility="WhileEditing" />
+
+                    <Label Text="Пароль"
+                           FontAttributes="Bold" />
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Введите пароль"
+                           IsPassword="True"
+                           ClearButtonVisibility="WhileEditing" />
+
+                    <Button Text="Войти"
+                            Clicked="LoginButton_Clicked" />
+
+                    <Label Text="Тестовые пользователи: anna / 12345 и ilya / 12345"
+                           FontSize="13"
+                           TextColor="#6F7280" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RBSLangApp.Views.DictionaryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Словарь">
+
+    <VerticalStackLayout Padding="18" Spacing="14">
+        <Label Text="Словарь"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="White" />
+
+        <SearchBar x:Name="SearchBarTerms"
+                   Placeholder="Поиск по слову или переводу"
+                   TextChanged="SearchBarTerms_TextChanged" />
+
+        <CollectionView x:Name="TermsCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <VerticalStackLayout Spacing="8">
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                                <Label Text="{Binding EnglishWord}"
+                                       FontSize="18"
+                                       FontAttributes="Bold" />
+                                <Button Grid.Column="1"
+                                        Text="🔊"
+                                        Clicked="SpeakButton_Clicked"
+                                        CommandParameter="{Binding .}"
+                                        WidthRequest="50"
+                                        HeightRequest="44"
+                                        Padding="0" />
+                                <Button Grid.Column="2"
+                                        Text="★"
+                                        Clicked="FavoriteButton_Clicked"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="#D74D4D"
+                                        WidthRequest="50"
+                                        HeightRequest="44"
+                                        Padding="0" />
+                            </Grid>
+
+                            <Label Text="{Binding Translation}"
+                                   FontSize="16"
+                                   TextColor="#8E1F1F" />
+
+                            <Label Text="{Binding Example}"
+                                   FontSize="14"
+                                   TextColor="#6F7280" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

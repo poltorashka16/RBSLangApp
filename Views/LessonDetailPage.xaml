@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RBSLangApp.Views.LessonDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Карточки">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+
+        <VerticalStackLayout Spacing="6">
+            <Label x:Name="LessonTitleLabel"
+                   FontSize="28"
+                   FontAttributes="Bold" />
+
+            <Label x:Name="LessonSubtitleLabel"
+                   FontSize="15"
+                   TextColor="#777777" />
+
+            <Label x:Name="CounterLabel"
+                   FontSize="14"
+                   TextColor="#999999" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1"
+                             VerticalOptions="Center"
+                             Spacing="16">
+
+            <Frame x:Name="CardFrame"
+                   CornerRadius="28"
+                   Padding="22"
+                   BorderColor="#E5E5E5"
+                   BackgroundColor="#F0FAE8"
+                   HasShadow="False"
+                   HeightRequest="340">
+
+                <Grid RowDefinitions="*,Auto" VerticalOptions="Fill">
+
+                    <Grid>
+                        <Label x:Name="CardMainTextLabel"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="#3C3C3C" />
+                    </Grid>
+
+                    <Label x:Name="CardExampleLabel"
+                           Grid.Row="1"
+                           FontSize="15"
+                           TextColor="#777777"
+                           HorizontalTextAlignment="Center"
+                           IsVisible="False" />
+                </Grid>
+            </Frame>
+
+            <Button Text="ПЕРЕВЕРНУТЬ КАРТОЧКУ"
+                    BackgroundColor="#1CB0F6"
+                    TextColor="White"
+                    CornerRadius="18"
+                    FontAttributes="Bold"
+                    Clicked="FlipCard_Clicked" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="2" Spacing="12">
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button Grid.Column="0"
+                        Text="🔊 СЛУШАТЬ"
+                        BackgroundColor="#58CC02"
+                        TextColor="White"
+                        CornerRadius="16"
+                        FontAttributes="Bold"
+                        Clicked="SpeakButton_Clicked" />
+
+                <Button Grid.Column="1"
+                        Text="★ В ИЗБРАННОЕ"
+                        BackgroundColor="#FFB020"
+                        TextColor="White"
+                        CornerRadius="16"
+                        FontAttributes="Bold"
+                        Clicked="FavoriteButton_Clicked" />
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button Grid.Column="0"
+                        Text="← НАЗАД"
+                        BackgroundColor="#E5E5E5"
+                        TextColor="#3C3C3C"
+                        CornerRadius="16"
+                        FontAttributes="Bold"
+                        Clicked="PrevCard_Clicked" />
+
+                <Button Grid.Column="1"
+                        Text="ДАЛЕЕ →"
+                        BackgroundColor="#58CC02"
+                        TextColor="White"
+                        CornerRadius="16"
+                        FontAttributes="Bold"
+                        Clicked="NextCard_Clicked" />
+            </Grid>
+
+            <Button Text="ПРОЙТИ ТЕСТ"
+                    BackgroundColor="#7C3AED"
+                    TextColor="White"
+                    CornerRadius="18"
+                    FontAttributes="Bold"
+                    Clicked="StartTest_Clicked" />
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>
