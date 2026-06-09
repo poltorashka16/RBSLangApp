@@ -34,50 +34,54 @@
                              Spacing="0">
 
             <Frame x:Name="CardFrame"
-                   CornerRadius="12"
-                   Padding="32"
-                   BorderColor="#E5E7EB"
-                   BackgroundColor="#FAFAFA"
+       CornerRadius="12"
+       Padding="0"
+       BorderColor="#E5E7EB"
+       BackgroundColor="#FAFAFA"
+       HasShadow="False"
+       MinimumHeightRequest="300">
+
+                <Grid>
+                    <!-- Контент карточки -->
+                    <Grid RowDefinitions="*,Auto" 
+              VerticalOptions="Center" 
+              RowSpacing="24"
+              Padding="32">
+
+                        <Label x:Name="CardMainTextLabel"
+                   Grid.Row="0"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="#111827" />
+
+                        <Frame x:Name="ExampleFrame"
+                   Grid.Row="1"
+                   BackgroundColor="#FEF2F2"
+                   CornerRadius="6"
+                   Padding="12"
                    HasShadow="False"
-                   MinimumHeightRequest="300">
+                   BorderColor="#FECACA"
+                   IsVisible="False">
+                            <Label x:Name="CardExampleLabel"
+                       FontSize="14"
+                       TextColor="#991B1B"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Italic" />
+                        </Frame>
+                    </Grid>
 
-                <Grid RowDefinitions="Auto,*,Auto" VerticalOptions="Center" RowSpacing="24">
-
-
-                    <Label x:Name="CardMainTextLabel"
-                           Grid.Row="0"
-                           FontSize="32"
-                           FontAttributes="Bold"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           TextColor="#111827" />
-
-
-                    <Frame x:Name="ExampleFrame"
-                           Grid.Row="1"
-                           BackgroundColor="#FEF2F2"
-                           CornerRadius="6"
-                           Padding="12"
-                           HasShadow="False"
-                           BorderColor="#FECACA"
-                           IsVisible="False">
-                        <Label x:Name="CardExampleLabel"
-                               FontSize="14"
-                               TextColor="#991B1B"
-                               HorizontalTextAlignment="Center"
-                               FontAttributes="Italic" />
-                    </Frame>
-
-
-                    <Button Text="ПЕРЕВЕРНУТЬ КАРТОЧКУ"
-                     Grid.Row="2"
-                    Style="{StaticResource MainButtonStyle}"
-                    Clicked="FlipCard_Clicked"
-                    Margin="0,16,0,0" />
-
+                    <!-- Прозрачная кнопка поверх -->
+                    <Button x:Name="FlipButton"
+                Opacity="0"
+                Clicked="FlipCard_Clicked"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
                 </Grid>
-            </Frame>
 
+            </Frame>
+            
         </VerticalStackLayout>
 
    
