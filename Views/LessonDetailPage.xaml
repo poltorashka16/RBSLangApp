@@ -3,107 +3,122 @@
     x:Class="RBSLangApp.Views.LessonDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Карточки">
+    Title="Карточки"
+    BackgroundColor="White">
 
-    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="20">
 
-        <VerticalStackLayout Spacing="6">
+      
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="RBSG LANGUAGE"
+                   FontSize="12"
+                   TextColor="#E31E24"
+                   FontAttributes="Bold"
+                   CharacterSpacing="2" />
             <Label x:Name="LessonTitleLabel"
-                   FontSize="28"
-                   FontAttributes="Bold" />
-
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#111827" />
             <Label x:Name="LessonSubtitleLabel"
-                   FontSize="15"
-                   TextColor="#777777" />
-
-            <Label x:Name="CounterLabel"
                    FontSize="14"
-                   TextColor="#999999" />
+                   TextColor="#6B7280" />
+            <Label x:Name="CounterLabel"
+                   FontSize="13"
+                   TextColor="#9CA3AF"
+                   FontAttributes="Bold" />
         </VerticalStackLayout>
 
+      
         <VerticalStackLayout Grid.Row="1"
                              VerticalOptions="Center"
-                             Spacing="16">
+                             Spacing="0">
 
             <Frame x:Name="CardFrame"
-                   CornerRadius="28"
-                   Padding="22"
-                   BorderColor="#E5E5E5"
-                   BackgroundColor="#F0FAE8"
+                   CornerRadius="12"
+                   Padding="32"
+                   BorderColor="#E5E7EB"
+                   BackgroundColor="#FAFAFA"
                    HasShadow="False"
-                   HeightRequest="340">
+                   MinimumHeightRequest="300">
 
-                <Grid RowDefinitions="*,Auto" VerticalOptions="Fill">
+                <Grid RowDefinitions="Auto,*,Auto" VerticalOptions="Center" RowSpacing="24">
 
-                    <Grid>
-                        <Label x:Name="CardMainTextLabel"
-                               FontSize="30"
-                               FontAttributes="Bold"
-                               HorizontalTextAlignment="Center"
-                               VerticalTextAlignment="Center"
-                               TextColor="#3C3C3C" />
-                    </Grid>
 
-                    <Label x:Name="CardExampleLabel"
-                           Grid.Row="1"
-                           FontSize="15"
-                           TextColor="#777777"
+                    <Label x:Name="CardMainTextLabel"
+                           Grid.Row="0"
+                           FontSize="32"
+                           FontAttributes="Bold"
                            HorizontalTextAlignment="Center"
-                           IsVisible="False" />
+                           VerticalTextAlignment="Center"
+                           TextColor="#111827" />
+
+
+                    <Frame x:Name="ExampleFrame"
+                           Grid.Row="1"
+                           BackgroundColor="#FEF2F2"
+                           CornerRadius="6"
+                           Padding="12"
+                           HasShadow="False"
+                           BorderColor="#FECACA"
+                           IsVisible="False">
+                        <Label x:Name="CardExampleLabel"
+                               FontSize="14"
+                               TextColor="#991B1B"
+                               HorizontalTextAlignment="Center"
+                               FontAttributes="Italic" />
+                    </Frame>
+
+
+                    <Button Text="ПЕРЕВЕРНУТЬ КАРТОЧКУ"
+                     Grid.Row="2"
+                    Style="{StaticResource MainButtonStyle}"
+                    Clicked="FlipCard_Clicked"
+                    Margin="0,16,0,0" />
+
                 </Grid>
             </Frame>
 
-            <Button Text="ПЕРЕВЕРНУТЬ КАРТОЧКУ"
-                    BackgroundColor="#1CB0F6"
-                    TextColor="White"
-                    CornerRadius="18"
-                    FontAttributes="Bold"
-                    Clicked="FlipCard_Clicked" />
         </VerticalStackLayout>
 
+   
         <VerticalStackLayout Grid.Row="2" Spacing="12">
 
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                 <Button Grid.Column="0"
-                        Text="🔊 СЛУШАТЬ"
-                        BackgroundColor="#58CC02"
-                        TextColor="White"
-                        CornerRadius="16"
-                        FontAttributes="Bold"
+                        Text="🔊 ОЗВУЧИТЬ"
+                        Style="{StaticResource SecondaryButtonStyle}"
                         Clicked="SpeakButton_Clicked" />
 
                 <Button Grid.Column="1"
                         Text="★ В ИЗБРАННОЕ"
-                        BackgroundColor="#FFB020"
-                        TextColor="White"
-                        CornerRadius="16"
-                        FontAttributes="Bold"
+                        Style="{StaticResource OutlineButtonStyle}"
                         Clicked="FavoriteButton_Clicked" />
             </Grid>
 
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                 <Button Grid.Column="0"
                         Text="← НАЗАД"
-                        BackgroundColor="#E5E5E5"
-                        TextColor="#3C3C3C"
-                        CornerRadius="16"
+                        BackgroundColor="#F3F4F6"
+                        TextColor="#374151"
+                        CornerRadius="4"
                         FontAttributes="Bold"
+                        FontSize="14"
+                        Padding="0,14"
                         Clicked="PrevCard_Clicked" />
 
                 <Button Grid.Column="1"
                         Text="ДАЛЕЕ →"
-                        BackgroundColor="#58CC02"
-                        TextColor="White"
-                        CornerRadius="16"
-                        FontAttributes="Bold"
+                        Style="{StaticResource MainButtonStyle}"
                         Clicked="NextCard_Clicked" />
             </Grid>
 
             <Button Text="ПРОЙТИ ТЕСТ"
-                    BackgroundColor="#7C3AED"
+                    BackgroundColor="#111827"
                     TextColor="White"
-                    CornerRadius="18"
+                    CornerRadius="4"
                     FontAttributes="Bold"
+                    FontSize="14"
+                    Padding="0,14"
                     Clicked="StartTest_Clicked" />
         </VerticalStackLayout>
 

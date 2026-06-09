@@ -3,35 +3,108 @@
     x:Class="RBSLangApp.Views.LessonTestsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Тест">
+    Title="Тест"
+    BackgroundColor="White">
 
-    <VerticalStackLayout Padding="20" Spacing="20">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="24">
 
-        <Label Text="Проверь себя"
-               FontSize="26"
-               FontAttributes="Bold" />
 
-        <Label x:Name="QuestionLabel"
-               FontSize="20"
-               FontAttributes="Bold" />
-
-        <VerticalStackLayout Spacing="12">
-            <Button x:Name="Option1" Clicked="Answer_Clicked" />
-            <Button x:Name="Option2" Clicked="Answer_Clicked" />
-            <Button x:Name="Option3" Clicked="Answer_Clicked" />
-            <Button x:Name="Option4" Clicked="Answer_Clicked" />
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="RBSG LANGUAGE"
+                   FontSize="12"
+                   TextColor="#E31E24"
+                   FontAttributes="Bold"
+                   CharacterSpacing="2" />
+            <Label Text="Проверка знаний"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#111827" />
+            <Label Text="Выберите правильный перевод"
+                   FontSize="14"
+                   TextColor="#6B7280" />
         </VerticalStackLayout>
 
-        <Label x:Name="ResultLabel"
-               FontSize="16"
-               HorizontalOptions="Center"
-               TextColor="Gray" />
+        <VerticalStackLayout Grid.Row="1" 
+                             VerticalOptions="Center" 
+                             Spacing="20">
 
-        <Button Text="Заново"
+
+            <Frame CornerRadius="12"
+                   Padding="24"
+                   BorderColor="#E5E7EB"
+                   BackgroundColor="#FAFAFA"
+                   HasShadow="False">
+                <Label x:Name="QuestionLabel"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="#111827"
+                       HorizontalTextAlignment="Center" />
+            </Frame>
+
+
+            <VerticalStackLayout Spacing="10">
+                <Button x:Name="Option1" 
+                        Clicked="Answer_Clicked"
+                        BackgroundColor="White"
+                        TextColor="#111827"
+                        BorderColor="#E5E7EB"
+                        BorderWidth="1"
+                        CornerRadius="8"
+                        FontSize="16"
+                        Padding="0,16" />
+
+                <Button x:Name="Option2" 
+                        Clicked="Answer_Clicked"
+                        BackgroundColor="White"
+                        TextColor="#111827"
+                        BorderColor="#E5E7EB"
+                        BorderWidth="1"
+                        CornerRadius="8"
+                        FontSize="16"
+                        Padding="0,16" />
+
+                <Button x:Name="Option3" 
+                        Clicked="Answer_Clicked"
+                        BackgroundColor="White"
+                        TextColor="#111827"
+                        BorderColor="#E5E7EB"
+                        BorderWidth="1"
+                        CornerRadius="8"
+                        FontSize="16"
+                        Padding="0,16" />
+
+                <Button x:Name="Option4" 
+                        Clicked="Answer_Clicked"
+                        BackgroundColor="White"
+                        TextColor="#111827"
+                        BorderColor="#E5E7EB"
+                        BorderWidth="1"
+                        CornerRadius="8"
+                        FontSize="16"
+                        Padding="0,16" />
+            </VerticalStackLayout>
+
+  
+            <Frame x:Name="ResultFrame"
+                   CornerRadius="8"
+                   Padding="16"
+                   HasShadow="False"
+                   IsVisible="False">
+                <Label x:Name="ResultLabel"
+                       FontSize="16"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Bold" />
+            </Frame>
+
+        </VerticalStackLayout>
+
+
+        <Button Grid.Row="2"
+                Text="ПРОЙТИ ЗАНОВО"
+                Style="{StaticResource MainButtonStyle}"
                 Clicked="Restart_Clicked"
-                BackgroundColor="#58CC02"
-                TextColor="White"
-                CornerRadius="16" />
+                HorizontalOptions="Center"
+                MinimumWidthRequest="250" />
 
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

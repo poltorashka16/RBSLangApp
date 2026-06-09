@@ -5,60 +5,101 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
 
-        <Color x:Key="BgColor">#F7F7F7</Color>
-        <Color x:Key="CardColor">#FFFFFF</Color>
-        <Color x:Key="PrimaryGreen">#58CC02</Color>
-        <Color x:Key="PrimaryGreenDark">#46A302</Color>
-        <Color x:Key="PrimaryBlue">#1CB0F6</Color>
-        <Color x:Key="PrimaryOrange">#FFB020</Color>
-        <Color x:Key="TextDark">#3C3C3C</Color>
-        <Color x:Key="TextGray">#777777</Color>
-        <Color x:Key="BorderGray">#E5E5E5</Color>
+        <!-- RBSG Brand Colors -->
+        <Color x:Key="RbsgRed">#E31E24</Color>
+        <Color x:Key="RbsgDarkRed">#B71C1C</Color>
+        <Color x:Key="RbsgDark">#1A1A1A</Color>
+        <Color x:Key="RbsgGray">#6B7280</Color>
+        <Color x:Key="RbsgLightGray">#F5F5F5</Color>
+        <Color x:Key="RbsgWhite">#FFFFFF</Color>
+        <Color x:Key="RbsgBorder">#E5E7EB</Color>
+        <Color x:Key="RbsgBlue">#2196F3</Color>
 
+        <!-- Aliases for existing styles -->
+        <Color x:Key="BgColor">#FFFFFF</Color>
+        <Color x:Key="CardColor">#FFFFFF</Color>
+        <Color x:Key="PrimaryGreen">#E31E24</Color>
+        <Color x:Key="PrimaryGreenDark">#B71C1C</Color>
+        <Color x:Key="PrimaryBlue">#2196F3</Color>
+        <Color x:Key="PrimaryOrange">#E31E24</Color>
+        <Color x:Key="TextDark">#1A1A1A</Color>
+        <Color x:Key="TextGray">#6B7280</Color>
+        <Color x:Key="BorderGray">#E5E7EB</Color>
+
+        <!-- Base Styles -->
         <Style TargetType="ContentPage">
-            <Setter Property="BackgroundColor" Value="{StaticResource BgColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource RbsgWhite}" />
         </Style>
 
         <Style TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource TextDark}" />
+            <Setter Property="TextColor" Value="{StaticResource RbsgDark}" />
             <Setter Property="FontFamily" Value="OpenSansRegular" />
         </Style>
 
         <Style x:Key="TitleLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="28" />
             <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource RbsgDark}" />
         </Style>
 
         <Style x:Key="SubtitleLabelStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="TextColor" Value="{StaticResource TextGray}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{StaticResource RbsgGray}" />
         </Style>
 
+        <!-- Card Style -->
         <Style x:Key="LessonCardStyle" TargetType="Frame">
-            <Setter Property="BackgroundColor" Value="{StaticResource CardColor}" />
-            <Setter Property="CornerRadius" Value="22" />
-            <Setter Property="Padding" Value="18" />
-            <Setter Property="Margin" Value="0,0,0,14" />
-            <Setter Property="BorderColor" Value="{StaticResource BorderGray}" />
-            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="BackgroundColor" Value="{StaticResource RbsgWhite}" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Margin" Value="0,0,0,12" />
+            <Setter Property="BorderColor" Value="{StaticResource RbsgBorder}" />
+            <Setter Property="HasShadow" Value="True" />
         </Style>
 
+        <!-- Button Styles -->
         <Style x:Key="MainButtonStyle" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryGreen}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource RbsgRed}" />
             <Setter Property="TextColor" Value="White" />
-            <Setter Property="CornerRadius" Value="18" />
-            <Setter Property="Padding" Value="16,12" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="24,14" />
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontSize" Value="14" />
         </Style>
 
         <Style x:Key="SecondaryButtonStyle" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBlue}" />
+            <Setter Property="BackgroundColor" Value="#333333" />
             <Setter Property="TextColor" Value="White" />
-            <Setter Property="CornerRadius" Value="16" />
-            <Setter Property="Padding" Value="12,10" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="20,12" />
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <Style x:Key="OutlineButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="{StaticResource RbsgRed}" />
+            <Setter Property="BorderColor" Value="{StaticResource RbsgRed}" />
+            <Setter Property="BorderWidth" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="24,14" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <!-- Entry Style -->
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="{StaticResource RbsgDark}" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource RbsgGray}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource RbsgWhite}" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <!-- SearchBar Style -->
+        <Style TargetType="SearchBar">
+            <Setter Property="TextColor" Value="{StaticResource RbsgDark}" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource RbsgGray}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource RbsgLightGray}" />
         </Style>
 
     </Application.Resources>

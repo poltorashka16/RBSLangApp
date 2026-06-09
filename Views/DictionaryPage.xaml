@@ -3,55 +3,127 @@
     x:Class="RBSLangApp.Views.DictionaryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Словарь">
+    Title="Словарь"
+    BackgroundColor="White">
 
-    <VerticalStackLayout Padding="18" Spacing="14">
-        <Label Text="Словарь"
-               FontSize="28"
-               FontAttributes="Bold"
-               TextColor="White" />
+    <Grid RowDefinitions="Auto,Auto,*" Padding="0" RowSpacing="0">
 
-        <SearchBar x:Name="SearchBarTerms"
-                   Placeholder="Поиск по слову или переводу"
-                   TextChanged="SearchBarTerms_TextChanged" />
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" 
+                             Padding="20,20,20,0" 
+                             Spacing="6"
+                             BackgroundColor="White">
+            <Label Text="RBSG LANGUAGE"
+                   FontSize="12"
+                   TextColor="#E31E24"
+                   FontAttributes="Bold"
+                   CharacterSpacing="2" />
+            <Label Text="Словарь терминов"
+                   Style="{StaticResource TitleLabelStyle}" />
+            <Label Text="Поиск по всем учебным модулям"
+                   Style="{StaticResource SubtitleLabelStyle}" />
+            <BoxView HeightRequest="1" Color="#F3F4F6" Margin="0,8,0,0" />
+        </VerticalStackLayout>
 
-        <CollectionView x:Name="TermsCollection">
+        <!-- Search -->
+        <SearchBar Grid.Row="1"
+                   x:Name="SearchBarTerms"
+                   Placeholder="Поиск по слову или переводу..."
+                   TextChanged="SearchBarTerms_TextChanged"
+                   Margin="20,12,20,0" />
+
+        <!-- Terms List -->
+        <CollectionView Grid.Row="2"
+                        x:Name="TermsCollection"
+                        Margin="20,12,20,20"
+                        VerticalOptions="FillAndExpand">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame>
+                    <Frame Margin="0,0,0,10"
+                           Padding="16"
+                           CornerRadius="8"
+                           BorderColor="#E5E7EB"
+                           BackgroundColor="White"
+                           HasShadow="False">
                         <VerticalStackLayout Spacing="8">
+
+                            <!-- Word & Actions -->
                             <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
                                 <Label Text="{Binding EnglishWord}"
                                        FontSize="18"
-                                       FontAttributes="Bold" />
+                                       FontAttributes="Bold"
+                                       TextColor="#111827"
+                                       VerticalOptions="Center" />
+
                                 <Button Grid.Column="1"
                                         Text="🔊"
                                         Clicked="SpeakButton_Clicked"
                                         CommandParameter="{Binding .}"
-                                        WidthRequest="50"
-                                        HeightRequest="44"
-                                        Padding="0" />
+                                        BackgroundColor="#F3F4F6"
+                                        TextColor="#374151"
+                                        WidthRequest="40"
+                                        HeightRequest="40"
+                                        Padding="0"
+                                        CornerRadius="4"
+                                        FontSize="16" />
+
                                 <Button Grid.Column="2"
                                         Text="★"
                                         Clicked="FavoriteButton_Clicked"
                                         CommandParameter="{Binding .}"
-                                        BackgroundColor="#D74D4D"
-                                        WidthRequest="50"
-                                        HeightRequest="44"
-                                        Padding="0" />
+                                        BackgroundColor="#FEF2F2"
+                                        TextColor="#E31E24"
+                                        WidthRequest="40"
+                                        HeightRequest="40"
+                                        Padding="0"
+                                        CornerRadius="4"
+                                        FontSize="16" />
                             </Grid>
 
+                            <!-- Translation -->
                             <Label Text="{Binding Translation}"
-                                   FontSize="16"
-                                   TextColor="#8E1F1F" />
+                                   FontSize="15"
+                                   TextColor="#E31E24"
+                                   FontAttributes="Bold" />
 
-                            <Label Text="{Binding Example}"
-                                   FontSize="14"
-                                   TextColor="#6F7280" />
+                            <!-- Example -->
+                            <Frame BackgroundColor="#F9FAFB"
+                                   CornerRadius="4"
+                                   Padding="10"
+                                   HasShadow="False"
+                                   BorderColor="#F3F4F6">
+                                <Label Text="{Binding Example}"
+                                       FontSize="13"
+                                       TextColor="#6B7280"
+                                       FontAttributes="Italic" />
+                            </Frame>
+
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     Padding="40">
+                    <Label Text="🔍"
+                           FontSize="48"
+                           HorizontalOptions="Center" />
+                    <Label Text="Ничего не найдено"
+                           FontSize="18"
+                           TextColor="#6B7280"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           Margin="0,12,0,0" />
+                    <Label Text="Попробуйте изменить поисковый запрос"
+                           FontSize="14"
+                           TextColor="#9CA3AF"
+                           HorizontalOptions="Center"
+                           Margin="0,4,0,0" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
         </CollectionView>
-    </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

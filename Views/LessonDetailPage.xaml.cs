@@ -10,13 +10,18 @@ public partial class LessonDetailPage : ContentPage
     private List<Term> _terms = new();
     private int _currentIndex = 0;
     private bool _isFlipped = false;
+    private bool _loaded = false;
+
 
     public string LessonId
     {
         set
         {
             if (int.TryParse(value, out int id))
+            {
                 _lessonId = id;
+                System.Diagnostics.Debug.WriteLine($"LessonId received = {id}");
+            }
         }
     }
 
@@ -25,14 +30,29 @@ public partial class LessonDetailPage : ContentPage
         InitializeComponent();
     }
 
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        if (_lessonId <= 0)
+        await LoadDataAsync();
+    }
+
+    private async Task LoadDataAsync()
+    {
+        if (_loaded)
             return;
 
+        if (_lessonId <= 0)
+        {
+            System.Diagnostics.Debug.WriteLine("LessonId is invalid");
+            return;
+        }
+
+        _loaded = true;
+
         var lesson = await App.Database.GetLessonAsync(_lessonId);
+
         if (lesson != null)
         {
             LessonTitleLabel.Text = lesson.Title;
@@ -40,17 +60,21 @@ public partial class LessonDetailPage : ContentPage
         }
 
         _terms = await App.Database.GetTermsByLessonAsync(_lessonId);
+
+        System.Diagnostics.Debug.WriteLine($"Terms loaded: {_terms.Count}");
+
         _currentIndex = 0;
         _isFlipped = false;
 
         ShowCurrentCard();
     }
 
+
     private void ShowCurrentCard()
     {
-        if (_terms.Count == 0)
+        if (_terms == null || _terms.Count == 0)
         {
-            CounterLabel.Text = "Нет карточек";
+            CounterLabel.Text = "0 / 0";
             CardMainTextLabel.Text = "Слова не найдены";
             CardExampleLabel.IsVisible = false;
             return;
@@ -83,6 +107,7 @@ public partial class LessonDetailPage : ContentPage
         }
     }
 
+
     private async Task AnimateCardFlip()
     {
         await CardFrame.ScaleTo(0.92, 90);
@@ -99,6 +124,7 @@ public partial class LessonDetailPage : ContentPage
         ShowCurrentCard();
     }
 
+
     private async void PrevCard_Clicked(object sender, EventArgs e)
     {
         if (_terms.Count == 0)
@@ -112,6 +138,7 @@ public partial class LessonDetailPage : ContentPage
             ShowCurrentCard();
         }
     }
+
 
     private async void NextCard_Clicked(object sender, EventArgs e)
     {
@@ -127,6 +154,7 @@ public partial class LessonDetailPage : ContentPage
         }
     }
 
+
     private async void SpeakButton_Clicked(object sender, EventArgs e)
     {
         if (_terms.Count == 0)
@@ -137,23 +165,55 @@ public partial class LessonDetailPage : ContentPage
         try
         {
             var locales = await TextToSpeech.Default.GetLocalesAsync();
-            var englishLocale = locales.FirstOrDefault(x =>
-                x.Language.StartsWith("en", StringComparison.OrdinalIgnoreCase));
+
+            string textToSpeak;
+            Locale? locale = null;
+
+            if (_isFlipped)
+            {
+
+                textToSpeak = term.Translation;
+                locale = locales.FirstOrDefault(x =>
+                    x.Language.StartsWith("ru", StringComparison.OrdinalIgnoreCase));
+
+                if (locale == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("Русская локаль не найдена, используется автоопределение языка");
+                }
+            }
+            else
+            {
+
+                textToSpeak = term.EnglishWord;
+                locale = locales.FirstOrDefault(x =>
+                    x.Language.StartsWith("en", StringComparison.OrdinalIgnoreCase));
+
+                if (locale == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("Английская локаль не найдена, используется автоопределение языка");
+                }
+            }
 
             var options = new SpeechOptions
             {
                 Pitch = 1.0f,
-                Volume = 1.0f,
-                Locale = englishLocale
+                Volume = 1.0f
             };
 
-            await TextToSpeech.Default.SpeakAsync(term.EnglishWord, options);
+
+            if (locale != null)
+            {
+                options.Locale = locale;
+            }
+
+            await TextToSpeech.Default.SpeakAsync(textToSpeak, options);
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Ошибка", $"Не удалось озвучить слово: {ex.Message}", "OK");
+            await DisplayAlert("Ошибка", ex.Message, "OK");
         }
     }
+
 
     private async void FavoriteButton_Clicked(object sender, EventArgs e)
     {
@@ -172,12 +232,14 @@ public partial class LessonDetailPage : ContentPage
 
         bool added = await App.Database.ToggleFavoriteAsync(login, term);
 
-        string message = added
-            ? $"Слово \"{term.EnglishWord}\" добавлено в избранное."
-            : $"Слово \"{term.EnglishWord}\" удалено из избранного.";
-
-        await DisplayAlert("Избранное", message, "OK");
+        await DisplayAlert(
+            "Избранное",
+            added
+                ? $"Добавлено: {term.EnglishWord}"
+                : $"Удалено: {term.EnglishWord}",
+            "OK");
     }
+
 
     private async void StartTest_Clicked(object sender, EventArgs e)
     {

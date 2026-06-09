@@ -3,42 +3,113 @@
     x:Class="RBSLangApp.Views.LoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="White">
 
-    <Grid Padding="22">
-        <VerticalStackLayout VerticalOptions="Center" Spacing="18">
-            <Label Text="RBSLangApp"
-                   FontSize="30"
+    <Grid RowDefinitions="*,Auto,*" Padding="30">
+
+
+        <VerticalStackLayout Grid.Row="0" 
+                             VerticalOptions="End" 
+                             Spacing="8"
+                             Margin="0,0,0,40">
+
+
+            <Frame WidthRequest="80"
+                   HeightRequest="80"
+                   CornerRadius="8"
+                   BackgroundColor="#E31E24"
+                   Padding="0"
+                   HasShadow="False"
+                   HorizontalOptions="Center">
+                <Label Text="RBSG"
+                       TextColor="White"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Frame>
+
+            <Label Text="RBSG Language App"
+                   FontSize="24"
                    FontAttributes="Bold"
-                   TextColor="White" />
+                   TextColor="#1A1A1A"
+                   HorizontalOptions="Center" />
 
-            <Label Text="Вход в приложение"
-                   FontSize="18"
-                   TextColor="#D7DAE2" />
+            <Label Text="Корпоративная платформа обучения"
+                   FontSize="14"
+                   TextColor="#6B7280"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
 
-            <Frame Margin="0,12,0,0">
-                <VerticalStackLayout Spacing="14">
+
+        <Frame Grid.Row="1" 
+               Padding="24"
+               CornerRadius="8"
+               BorderColor="#E5E7EB"
+               BackgroundColor="White"
+               HasShadow="False"
+               VerticalOptions="Center">
+
+            <VerticalStackLayout Spacing="18">
+
+                <Label Text="Вход в систему"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="#1A1A1A" />
+
+     
+                <VerticalStackLayout Spacing="6">
                     <Label Text="Логин"
-                           FontAttributes="Bold" />
+                           FontSize="13"
+                           FontAttributes="Bold"
+                           TextColor="#4B5563" />
                     <Entry x:Name="LoginEntry"
                            Placeholder="Введите логин"
                            ClearButtonVisibility="WhileEditing" />
+                </VerticalStackLayout>
 
+     
+                <VerticalStackLayout Spacing="6">
                     <Label Text="Пароль"
-                           FontAttributes="Bold" />
+                           FontSize="13"
+                           FontAttributes="Bold"
+                           TextColor="#4B5563" />
                     <Entry x:Name="PasswordEntry"
                            Placeholder="Введите пароль"
                            IsPassword="True"
                            ClearButtonVisibility="WhileEditing" />
-
-                    <Button Text="Войти"
-                            Clicked="LoginButton_Clicked" />
-
-                    <Label Text="Тестовые пользователи: anna / 12345 и ilya / 12345"
-                           FontSize="13"
-                           TextColor="#6F7280" />
                 </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
+
+      
+                <Button Text="ВОЙТИ"
+                        Style="{StaticResource MainButtonStyle}"
+                        Clicked="LoginButton_Clicked"
+                        Margin="0,8,0,0" />
+
+ 
+                <Frame BackgroundColor="#F9FAFB"
+                       CornerRadius="4"
+                       Padding="12"
+                       HasShadow="False"
+                       BorderColor="#E5E7EB">
+                    <Label Text="Тестовые доступы: anna / 12345  •  ilya / 12345"
+                           FontSize="12"
+                           TextColor="#6B7280"
+                           HorizontalTextAlignment="Center" />
+                </Frame>
+
+            </VerticalStackLayout>
+        </Frame>
+
+
+        <Label Grid.Row="2"
+               Text="© 2024 RBSG. Все права защищены."
+               FontSize="11"
+               TextColor="#9CA3AF"
+               HorizontalOptions="Center"
+               VerticalOptions="End"
+               Margin="0,0,0,20" />
+
     </Grid>
 </ContentPage>
